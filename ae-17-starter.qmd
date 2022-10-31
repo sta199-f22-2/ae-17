@@ -17,7 +17,7 @@ library(tidymodels)
 library(openintro)
 ```
 
-Before we use the dataset, we'll make a few transformations to it.
+Before we use the data set, we'll make a few transformations to it.
 
 Warm up: What is this code doing?
 
@@ -207,6 +207,8 @@ glance(rate_util_home_int_fit)
 R-squared is 
 
 Adjusted R-squared is 
+
+- **Question:** Based on the $R^2s$ of these two models, which one do we prefer? Is this appropriate?
 
 - **Question:** Based on the adjusted $R^2$s of these two models, which one do we prefer?
 
