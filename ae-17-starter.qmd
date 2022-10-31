@@ -49,6 +49,7 @@ Write a model that models interest rate by credit utilization ratio. Name it `ra
 ```{r}
 #| label: fit-rate-util
 
+rate_util_fit <-
 ```
 
 And here is the model visualized:
@@ -67,6 +68,55 @@ ggplot(loans, aes(x = credit_util, y = interest_rate)) +
 
 ```
 
+# Leverage vs Influence 
+
+What is leverage? What is influence? 
+
+
+Now, let's add data points to drive this idea home!
+
+
+```{r}
+
+new_point_1 <- data.frame(100, NA, NA, 0.8, NA,  NA, NA, NA, NA)
+names(new_point_1) <- names(loans)
+
+new_point_2 <- data.frame(100, NA, NA, 4, NA,  NA, NA, NA, NA)
+names(new_point_2) <- names(loans)
+
+
+new_loans1 <- rbind(loans, new_point_1)
+
+new_loans2 <- rbind(loans, new_point_2)
+```
+
+
+Below, compare the model outputs. 
+
+
+```{r}
+
+linear_reg() |>
+  set_engine("lm") |>
+  fit(interest_rate ~ credit_util, data = new_loans) |>
+  tidy()
+
+linear_reg() |>
+  set_engine("lm") |>
+  fit(interest_rate ~ credit_util, data = new_loans1) |>
+  tidy()
+
+linear_reg() |>
+  set_engine("lm") |>
+  fit(interest_rate ~ credit_util, data = new_loans2) |>
+  tidy()
+
+
+```
+
+*Add Response*
+
+
 # Interest rate vs. homeownership
 
 Next lets predict interest rates from homeownership, which is a categorical predictor with three levels:
@@ -80,7 +130,8 @@ levels(loans$homeownership)
 ```{r}
 #| label: fit-rate-home
 
-
+rate_util_home_fit <- 
+  
 ```
 
 -   **Your turn:** Interpret each coefficient in context of the problem.
@@ -125,9 +176,7 @@ $$
 
 ```{r}
 #| label: rate-util-home-fit
-rate_util_home_int_fit <- linear_reg() |>
-  fit(interest_rate ~ credit_util * homeownership, data = loans)
-tidy(rate_util_home_int_fit)
+rate_util_home_int_fit <- 
 ```
 
 $$
@@ -161,6 +210,10 @@ Adjusted R-squared is
 
 - **Question:** Based on the adjusted $R^2$s of these two models, which one do we prefer?
 
+
+
+
+Note: We can use the principles of adjusted R-squared to select models using forwards or backwards selection (Read 8.4.1)
 
 # Another model to consider
 
