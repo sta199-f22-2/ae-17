@@ -114,6 +114,13 @@ linear_reg() |>
 
 ```
 
+```{r}
+ggplot(loans, aes(x = credit_util, y = interest_rate)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm")
+```
+
+
 *Add Response*
 
 
@@ -180,7 +187,7 @@ rate_util_home_int_fit <-
 ```
 
 $$
-\widehat{interest~rate} = 9.44 + 6.20 \times credit~util + 1.39 \times Mortgage + 0.697 \times Own - 1.64 \times credit_util:Mortgage - 1.06 \times credit_util:Own
+\widehat{interest~rate} = 9.44 + 6.20 \times credit\_util + 1.39 \times Mortgage + 0.697 \times Own - 1.64 \times credit\_util:Mortgage - 1.06 \times credit\_util:Own
 $$
 
 -   **Demo:** Write the estimated regression equation for loan applications from each of the homeownership groups separately.
